@@ -9,7 +9,7 @@ joke on every login and `clear`.
 
 ## Requirements
 
-- Termux and Termux:Styling, both installed from **F-Droid** (not Play Store).
+- Termux installed from **F-Droid** (not Play Store).
   Signatures must match or styling won't apply.
 - Android 7+ (aarch64).
 
