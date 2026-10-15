@@ -5,10 +5,10 @@ joke on every login and `clear`.
 
 ## Screenshot
 
-(paste one here)
+![preAzure in Termux](screenshots/preAzure.png)
+The greeting includes a slur. Sorry
 
 ## Requirements
-
 - Termux installed from **F-Droid** (not Play Store).
   Signatures must match or styling won't apply.
 - Android 7+ (aarch64).
