@@ -26,7 +26,7 @@ The installer sets up fish as your shell, installs the configs, and copies
 the cats. It does **not** install the Nerd Font — that's a manual step
 because it can't be fetched by `pkg`.
 
-### Manual step: Installing Nerd Font (I recommend using JetBrains Mono Nerd)
+### Manual step: Installing Nerd Font<br>(I recommend using JetBrains for this)
 
 Download `JetBrainsMonoNerdFontMono-Regular.ttf` — the **Mono** variant —
 from the [Nerd Fonts releases](https://github.com/ryanoasis/nerd-fonts/releases).
