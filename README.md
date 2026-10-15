@@ -1,11 +1,12 @@
 # preAzure
 
-A Termux fetch dashboard for Android. Random cat, system specs, and a dad
-joke on every login and `clear`.
+A Termux fetch dashboard for Android. Random premade cat ASCII, system specs, and a dad
+jokes on every login and `clear`.
 
 ## Screenshot
 
 ![preAzure in Termux](screenshots/preAzure.png)
+
 The greeting includes a slur. Sorry
 
 ## Requirements
@@ -25,7 +26,7 @@ The installer sets up fish as your shell, installs the configs, and copies
 the cats. It does **not** install the Nerd Font — that's a manual step
 because it can't be fetched by `pkg`.
 
-### Manual step: the Nerd Font
+### Manual step: Installing Nerd Font (I recommend using JetBrains Mono Nerd)
 
 Download `JetBrainsMonoNerdFontMono-Regular.ttf` — the **Mono** variant —
 from the [Nerd Fonts releases](https://github.com/ryanoasis/nerd-fonts/releases).
@@ -51,9 +52,9 @@ one, not the Mono one).
 ## What you get
 
 - Time-of-day greeting, colored by hour
-- Random ASCII cat on the left (six in rotation)
+- Random premade ASCII cat on the left (six in rotation)
 - Fastfetch specs on the right, Catppuccin Mocha palette
-- Dad joke from [icanhazdadjoke.com](https://icanhazdadjoke.com), centered
+- Dad jokes from [icanhazdadjoke.com](https://icanhazdadjoke.com), centered
   and cached for 5 minutes
 - Custom fish prompt: `~ preAzure ➤`
 - `clear` wipes and re-runs the whole dashboard
@@ -85,4 +86,4 @@ bash uninstall.sh
 
 ## License
 
-MIT
+WTFPL
