@@ -77,7 +77,7 @@ exec fish && preAzure
 
 ![preAzure in Termux](screenshots/preAzure.png)
 
-*Note: The greeting in the screenshot may contain offensive language.*
+*Preview contains a slur. Sorry.*
 
 ## Configuration
 
