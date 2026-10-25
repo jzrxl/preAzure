@@ -9,7 +9,7 @@ A lightweight Termux fetch dashboard for Android. On every login or `clear`/`x`,
 - **System info** — Displays OS, Host, Kernel, Uptime, CPU, GPU, Memory, Storage, and Battery using fastfetch with a Catppuccin Mocha-inspired theme
 - **Dad jokes** — Fetches jokes from icanhazdadjoke.com, centers them nicely, and caches them for 5 minutes
 - **Custom fish prompt** — Clean prompt showing `~ preAzure ➤`
-- **Auto-refresh on clear** — Running `clear` re-runs the entire dashboard
+- **Auto-refresh on clear** — Running `clear`,`x`, or `exec fish` re-runs the entire dashboard
 
 ## Requirements
 
@@ -111,4 +111,4 @@ bash uninstall.sh
 
 ## License
 
-[WTFPL](LICENSE) - Do What The F*ck You Want To Public License
+[WTFPL](LICENSE)
