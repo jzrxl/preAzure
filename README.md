@@ -1,82 +1,107 @@
 # preAzure
 
-A Termux fetch dashboard for Android. Random premade cat ASCII, system specs, and a dad
-jokes on every login and `clear`/`x`.
+A lightweight Termux fetch dashboard for Android. On every login or `clear`/`x`, it displays a time-based greeting, a random ASCII cat, system info via [fastfetch](https://github.com/fastfetch-cli/fastfetch), and a cached dad joke from [icanhazdadjoke.com](https://icanhazdadjoke.com).
 
-## Screenshot
+## Features
 
-![preAzure in Termux](screenshots/preAzure.png)
-
-The greeting includes a slur. Sorry
+- **Time-based greeting** — Greets you by time of day (Morning/Afternoon/Evening/Night) with customizable colors and name
+- **Random ASCII cats** — Rotates between 6 premade cat ASCII art pieces
+- **System info** — Displays OS, Host, Kernel, Uptime, CPU, GPU, Memory, Storage, and Battery using fastfetch with a Catppuccin Mocha-inspired theme
+- **Dad jokes** — Fetches jokes from icanhazdadjoke.com, centers them nicely, and caches them for 5 minutes
+- **Custom fish prompt** — Clean prompt showing `~ preAzure ➤`
+- **Auto-refresh on clear** — Running `clear` re-runs the entire dashboard
 
 ## Requirements
-- Termux installed from **F-Droid** (not Play Store).
-  Signatures must match or styling won't apply.
-- Android 7+ (aarch64).
 
-## Install
+- [Termux](https://github.com/termux/termux-app) installed from **[F-Droid](https://f-droid.org/packages/com.termux/)** (not the Google Play Store). Signatures must match or styling won't apply properly.
+- Android 7+ (aarch64)
+- Internet connection (for fetching dad jokes; cached after first fetch)
+
+## Installation
+
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/<you>/preazure.git
-cd preazure
+git clone https://github.com/<your-username>/preAzure.git
+cd preAzure
+```
+
+### 2. Run the installer
+
+```bash
 bash install.sh
 ```
 
-The installer sets up fish as your shell, installs the configs, and copies
-the cats. It does **not** install the Nerd Font — that's a manual step
-because it can't be fetched by `pkg`.
+The installer will:
+- Install required packages (`fish`, `fastfetch`, `bat`, `fzf`, `eza`, `zoxide`, `termux-api`, `git`, `jq`, `nano`, `unzip`, `curl`)
+- Set `fish` as your default shell
+- Install preAzure scripts to `~/.local/bin/`
+- Copy configuration files to `~/.config/preAzure/` and `~/.config/fastfetch/`
+- Install ASCII cats to `~/.config/fastfetch/cats/`
+- Install fish config and custom functions
+- Apply Termux color scheme
+- Add `~/.local/bin` to your PATH
 
-### Manual step: Installing Nerd Font<br>(I recommend using JetBrains for this)
+### 3. Install a Nerd Font (required)
 
-Download `JetBrainsMonoNerdFontMono-Regular.ttf` — the **Mono** variant —
-from the [Nerd Fonts releases](https://github.com/ryanoasis/nerd-fonts/releases).
+The installer does **not** install fonts automatically. You'll need a Nerd Font for proper icon/glyph rendering.
 
-Copy it into place:
+1. Download `JetBrainsMonoNerdFontMono-Regular.ttf` (the **Mono** variant) from the [Nerd Fonts releases page](https://github.com/ryanoasis/nerd-fonts/releases).
+2. Copy it to your Termux font directory:
 
 ```bash
 cp /storage/emulated/0/Download/JetBrainsMonoNerdFontMono-Regular.ttf ~/.termux/font.ttf
 ```
 
-Verify it's ~2.4 MB. Then force-stop Termux from Android Settings → Apps →
-Termux, wait 10 seconds, reopen.
+3. Verify the file is ~2.4 MB.
+4. Force-stop Termux from Android Settings → Apps → Termux, wait 10 seconds, then reopen it.
 
-Test:
+### 4. Verify font installation
+
+Test that glyphs render correctly:
 
 ```bash
 printf '\ue0b0 \ue0b2 \uf17b \uf303 \ue0b3\n'
 ```
 
-Real glyphs = success. Boxes = wrong variant (you grabbed the proportional
-one, not the Mono one).
+- **Real glyphs** = Success!
+- **Boxes/question marks** = Wrong font variant (make sure you downloaded the *Mono* variant, not the proportional one)
 
-## What you get
+### 5. Launch
 
-- Time-of-day greeting, colored by hour
-- Random premade ASCII cat on the left (six in rotation)
-- Fastfetch specs on the right, Catppuccin Mocha palette
-- Dad jokes from [icanhazdadjoke.com](https://icanhazdadjoke.com), centered
-  and cached for 5 minutes
-- Custom fish prompt: `~ preAzure ➤`
-- `clear` and `x` wipes and re-runs the whole dashboard
+```bash
+exec fish && preAzure
+```
+
+## Screenshot
+
+![preAzure in Termux](screenshots/preAzure.png)
+
+*Note: The greeting in the screenshot may contain offensive language.*
 
 ## Configuration
 
-Edit `~/.config/preAzure/config.sh`:
+Edit `~/.config/preAzure/config.sh` to customize your dashboard:
 
-| Variable | Default | Notes |
+| Variable | Default | Description |
 |---|---|---|
-| `GREET_NAME` | `friend` | Name in the greeting |
-| `TIME_COLOR` | `118` | Clock color (256-color code) |
-| `GREET_MORNING_COLOR` | `220` | 5am–12pm |
-| `GREET_AFTERNOON_COLOR` | `208` | 12pm–5pm |
-| `GREET_EVENING_COLOR` | `177` | 5pm–10pm |
-| `GREET_NIGHT_COLOR` | `111` | 10pm–5am |
-| `JOKE_COLOR` | `118` | Dad joke color |
-| `JOKE_ENABLED` | `1` | `0` to hide the joke |
-| `CAT_ENABLED` | `1` | `0` to hide the cat |
-| `JOKE_TTL` | `300` | Joke cache in seconds |
+| `GREET_NAME` | `friend` | Name displayed in the greeting |
+| `TIME_COLOR` | `118` | Color for the clock/time (256-color) |
+| `GREET_MORNING_COLOR` | `220` | Greeting color for 5:00 AM - 11:59 AM |
+| `GREET_AFTERNOON_COLOR` | `208` | Greeting color for 12:00 PM - 4:59 PM |
+| `GREET_EVENING_COLOR` | `177` | Greeting color for 5:00 PM - 9:59 PM |
+| `GREET_NIGHT_COLOR` | `111` | Greeting color for 10:00 PM - 4:59 AM |
+| `JOKE_COLOR` | `118` | Color for the dad joke text (256-color) |
+| `JOKE_ENABLED` | `1` | Set to `0` to disable dad jokes |
+| `CAT_ENABLED` | `1` | Set to `0` to disable the ASCII cat |
+| `JOKE_TTL` | `300` | Joke cache duration in seconds (default: 5 minutes) |
 
-Color codes: [256-color cheat sheet](https://www.ditig.com/256-colors-cheat-sheet).
+See the [256-color cheat sheet](https://www.ditig.com/256-colors-cheat-sheet) for color codes.
+
+## Usage
+
+- **On login** — The dashboard runs automatically when you open Termux with fish as your shell
+- **Refresh** — Run `clear` or `x` to re-run the dashboard with a new random cat and potentially a fresh joke (if cache expired)
 
 ## Uninstall
 
@@ -86,4 +111,4 @@ bash uninstall.sh
 
 ## License
 
-WTFPL
+[WTFPL](LICENSE) - Do What The F*ck You Want To Public License
