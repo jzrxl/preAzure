@@ -1,7 +1,7 @@
 # preAzure
 
 A Termux fetch dashboard for Android. Random premade cat ASCII, system specs, and a dad
-jokes on every login and `clear`.
+jokes on every login and `clear`/`x`.
 
 ## Screenshot
 
