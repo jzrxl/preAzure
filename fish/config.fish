@@ -2,8 +2,10 @@ if status is-interactive
     preAzure
 end
 
+# Remove welcome message
 set -U fish_greeting ""
 
+# Fish syntax highlighting (Catppuccin Mocha)
 set -U fish_color_normal          cdd6f4
 set -U fish_color_command         89b4fa
 set -U fish_color_param           89dceb
@@ -20,4 +22,6 @@ set -U fish_color_cwd             89dceb
 set -U fish_color_cwd_root        f38ba8
 set -U fish_color_valid_path      --underline
 
-fish_add_path ~/.local/bin
+# Aliases
+alias cat='bat --style=plain'
+alias catn='bat'

@@ -1,0 +1,29 @@
+#!/data/data/com.termux/files/usr/bin/bash
+
+CACHE="$HOME/.cache/dadjokes.txt"
+URL="https://icanhazdadjoke.com/search?limit=30"
+MAX_CACHE=500
+
+mkdir -p "$(dirname "$CACHE")"
+
+# ── Try to refresh cache from icanhazdadjoke ──
+if curl -sf --max-time 4 -H "Accept: application/json" -H "User-Agent: preAzure-termux" "$URL" -o "$CACHE.new" 2>/dev/null; then
+    if command -v jq >/dev/null 2>&1; then
+        # Parse JSON, extract jokes, one per line
+        jq -r '.results[] | .joke' "$CACHE.new" 2>/dev/null >> "$CACHE.tmp"
+    fi
+
+    # Merge with existing, dedupe, trim to MAX_CACHE
+    cat "$CACHE" "$CACHE.tmp" 2>/dev/null | sort -u | tail -n "$MAX_CACHE" > "$CACHE.merged"
+    mv "$CACHE.merged" "$CACHE"
+    rm -f "$CACHE.new" "$CACHE.tmp"
+fi
+
+# ── Pick a random joke from cache ──
+if [ -s "$CACHE" ]; then
+    total=$(wc -l < "$CACHE")
+    pick=$((RANDOM % total + 1))
+    sed -n "${pick}p" "$CACHE"
+else
+    echo "No jokes cached yet — connect to the internet once to populate."
+fi

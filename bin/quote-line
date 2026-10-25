@@ -1,0 +1,2 @@
+#!/data/data/com.termux/files/usr/bin/bash
+printf '\e[38;5;177m"%s"\e[0m' "$(~/.local/bin/quote)"

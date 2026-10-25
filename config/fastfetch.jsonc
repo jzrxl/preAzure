@@ -23,6 +23,6 @@
     { "type": "memory",  "key": "Memory" },
     { "type": "command", "key": "Storage",
       "text": "df -h /storage/emulated | tail -1 | awk '{print $3 \" / \" $2 \" (\" $5 \")\"}'" },
-    { "type": "battery", "key": "Battery" }
+    { "type": "battery", "key": "Battery", "format": "{capacity}% [{status}]" }
   ]
 }
