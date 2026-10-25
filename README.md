@@ -22,7 +22,7 @@ A lightweight Termux fetch dashboard for Android. On every login or `clear`/`x`,
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/preAzure.git
+git clone https://github.com/jzrxl/preAzure.git
 cd preAzure
 ```
 
