@@ -57,7 +57,7 @@ one, not the Mono one).
 - Dad jokes from [icanhazdadjoke.com](https://icanhazdadjoke.com), centered
   and cached for 5 minutes
 - Custom fish prompt: `~ preAzure ➤`
-- `clear` wipes and re-runs the whole dashboard
+- `clear` and `x` wipes and re-runs the whole dashboard
 
 ## Configuration
 
